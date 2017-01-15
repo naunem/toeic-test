@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:textSize="40sp"
+        android:textColor="#FF00FF"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"/>
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="App name: "
+        android:layout_below="@+id/title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toeic Test"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/appname"
+        android:layout_marginLeft="40dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version:"
+        android:layout_below="@+id/appname"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/appname"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/versionname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.0"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/appname"
+        android:layout_alignLeft="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author: "
+        android:layout_below="@+id/version"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/appname"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/authorname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phan Trọng Nhân "
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/appname"
+        android:layout_alignLeft="@+id/name"
+        android:layout_below="@+id/versionname"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Release date:"
+        android:layout_below="@+id/author"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/appname"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/datename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13/01/2017"
+        android:layout_below="@+id/authorname"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_alignLeft="@+id/name"/>
+
+</RelativeLayout>
