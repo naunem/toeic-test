@@ -79,7 +79,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="725b77bb7bf2d324dc42b979a2d4dac2fc169fb6">
+        sha1="19af418450a04c1090858b62eece903e0e3c6926">
         <dex dex="/home/naunem/Study/Android/toeic-test-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_82d0f88f58166e8ab7790cc00af85cab2bfb0b17/classes.dex" />
     </item>
     <item
@@ -142,7 +142,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="30163c8ffacb8cdcedef886c1bbdf0c35556e337">
+        sha1="fcdf876171625b2fbf481c5aeab5d48a101d3f18">
         <dex dex="/home/naunem/Study/Android/toeic-test-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_65f44988510bdc06ef866a7a9ea723bd7cb45b5e/classes.dex" />
     </item>
 

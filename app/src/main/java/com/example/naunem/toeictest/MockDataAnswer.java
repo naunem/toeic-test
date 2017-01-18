@@ -21,7 +21,7 @@ public class MockDataAnswer {
     }
     public ArrayList<Question> getDataReading() throws IOException {
         String str = "";
-        InputStream is = mContext.getResources().openRawResource(R.raw.answer_reading);
+        InputStream is = mContext.getResources().openRawResource(R.raw.answerreading);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         if (is != null) {
             int i = 1;
@@ -38,7 +38,7 @@ public class MockDataAnswer {
 
     public ArrayList<Question> getDataListening() throws IOException {
         String str = "";
-        InputStream is = mContext.getResources().openRawResource(R.raw.answer_listening);
+        InputStream is = mContext.getResources().openRawResource(R.raw.answerlistenning);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         if (is != null) {
             int i = 1;

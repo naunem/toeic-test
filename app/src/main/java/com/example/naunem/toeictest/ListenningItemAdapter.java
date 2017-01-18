@@ -10,7 +10,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -19,19 +18,19 @@ import java.util.ArrayList;
 
 public class ListenningItemAdapter extends RecyclerView.Adapter<ListenningItemAdapter.ItemView> {
 
-    ArrayList<QuestionListening> list;
+    ArrayList<QuestionItem> list;
     ArrayList<Question> arrList;
-    ArrayList<Question> data;
     private Context context;
+    updatechoi check;
+    int thedo;
 
-    public ListenningItemAdapter(ArrayList<QuestionListening> list, Context context) {
+    public void setCheck(updatechoi check) {
+        this.check = check;
+    }
+
+    public ListenningItemAdapter(ArrayList<QuestionItem> list, Context context) {
         this.list = list;
         this.context = context;
-        try {
-            data = new MockDataAnswer(context).getDataListening();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         arrList = DataAnswer.getMang();
     }
 
@@ -43,21 +42,14 @@ public class ListenningItemAdapter extends RecyclerView.Adapter<ListenningItemAd
 
     @Override
     public void onBindViewHolder(final ItemView holder, final int position) {
-        QuestionListening data = list.get(position);
+        QuestionItem data = list.get(position);
         holder.tv.setText(data.getQuestion());
         holder.image.setImageBitmap(data.getBitmap());
         holder.a.setText(data.getA());
         holder.b.setText(data.getB());
         holder.c.setText(data.getC());
         holder.d.setText(data.getD());
-        /*if(!data.getD().toString().trim().isEmpty()){
-            holder.d.setVisibility(View.VISIBLE);
-            holder.d.setText(data.getD());
-            }
-        else {
-            holder.d.setVisibility(View.GONE);
-            holder.line.setVisibility(View.GONE);
-        }*/
+
         if (list.get(position).getAnswer() == null) {
             holder.rgroup.clearCheck();
             holder.a.setChecked(false);
@@ -96,6 +88,12 @@ public class ListenningItemAdapter extends RecyclerView.Adapter<ListenningItemAd
             d = (RadioButton) itemView.findViewById(R.id.d);
             rgroup = (RadioGroup) itemView.findViewById(R.id.group);
             line = (View) itemView.findViewById(R.id.line);
+            thedo=0;
+            for (int i=0;i<list.size();i++)
+            if(null!=list.get(i).getAnswer()) {
+                thedo++;
+            }
+            check.check(thedo);
             rgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -106,19 +104,24 @@ public class ListenningItemAdapter extends RecyclerView.Adapter<ListenningItemAd
                         isChecked = checkedRadioButton.isChecked();
                     }
                     // If the radiobutton that has changed in check state is now checked...
+                    int k=getLayoutPosition();
                     if (isChecked) {
+                        if(null==list.get(k).getAnswer()) {
+                            thedo++;
+                            check.check(thedo);
+                        }
                         switch (i) {
                             case R.id.a:
-                                list.get(getLayoutPosition()).setAnswer("A");
+                                list.get(k).setAnswer("A");
                                 break;
                             case R.id.b:
-                                list.get(getLayoutPosition()).setAnswer("B");
+                                list.get(k).setAnswer("B");
                                 break;
                             case R.id.c:
-                                list.get(getLayoutPosition()).setAnswer("C");
+                                list.get(k).setAnswer("C");
                                 break;
                             case R.id.d:
-                                list.get(getLayoutPosition()).setAnswer("D");
+                                list.get(k).setAnswer("D");
                                 break;
                             default:
                                 break;
@@ -127,5 +130,8 @@ public class ListenningItemAdapter extends RecyclerView.Adapter<ListenningItemAd
                 }
             });
         }
+    }
+    public interface updatechoi{
+        void check(int number);
     }
 }

@@ -17,7 +17,7 @@
             <TextView
                 android:id="@+id/question"
                 android:layout_width="0dp"
-                android:text="1/100"
+                android:text="0/100"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:layout_marginRight="5dp"

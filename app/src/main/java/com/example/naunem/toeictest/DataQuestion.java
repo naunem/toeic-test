@@ -16,13 +16,13 @@ public class DataQuestion {
     Context mContext;
     String question;
     String a, b, c, d;
-    ArrayList<QuestionListening> data = new ArrayList<>();
+    ArrayList<QuestionItem> data = new ArrayList<>();
 
     public DataQuestion(Context mContext) {
         this.mContext = mContext;
     }
 
-    public ArrayList<QuestionListening> getDataReading() throws IOException {
+    public ArrayList<QuestionItem> getDataReading() throws IOException {
         String str = "";
         InputStream is = mContext.getResources().openRawResource(R.raw.questionreading);
 
@@ -34,7 +34,7 @@ public class DataQuestion {
                 b = reader.readLine();
                 c = reader.readLine();
                 d = reader.readLine();
-                data.add(new QuestionListening(question, a, b, c, d));
+                data.add(new QuestionItem(question, a, b, c, d));
             }
         }
         reader.close();
@@ -42,10 +42,9 @@ public class DataQuestion {
         return data;
     }
 
-    public ArrayList<QuestionListening> getDataListening() throws IOException {
+    public ArrayList<QuestionItem> getDataListening() throws IOException {
         String str = "";
         InputStream is = mContext.getResources().openRawResource(R.raw.questionlistening);
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         if (is != null) {
             while (!(str = reader.readLine()).trim().isEmpty()) {
@@ -54,7 +53,7 @@ public class DataQuestion {
                 b = reader.readLine();
                 c = reader.readLine();
                 d = reader.readLine();
-                data.add(new QuestionListening(question, a, b, c, d));
+                data.add(new QuestionItem(question, a, b, c, d));
             }
         }
         reader.close();
@@ -62,7 +61,7 @@ public class DataQuestion {
         return data;
     }
 
-    public QuestionListening getQuestionById(int number, ArrayList<QuestionListening> data) {
+    public QuestionItem getQuestionById(int number, ArrayList<QuestionItem> data) {
         return data.get(number);
     }
 }

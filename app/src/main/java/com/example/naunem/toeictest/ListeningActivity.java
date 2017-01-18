@@ -2,6 +2,8 @@ package com.example.naunem.toeictest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,20 +25,18 @@ import java.util.ArrayList;
  * Created by HCD-Fresher036 on 1/10/2017.
  */
 
-public class ListeningActivity extends AppCompatActivity implements View.OnClickListener {
+public class ListeningActivity extends AppCompatActivity implements View.OnClickListener ,ListenningItemAdapter.updatechoi{
     RecyclerView recyclerView;
     ListenningItemAdapter adapter;
     Toolbar toolbar;
-    ImageView img;
-    ArrayList<QuestionListening> list;
-    ArrayList<QuestionListening> arr;
+    ArrayList<QuestionItem> list;
     TextView time;
     TextView count;
     Button submit;
     MediaPlayer mPlayer = null;
     DataQuestion data;
-    private int[] vitoidayeuem = new int[]{R.drawable.part11, R.drawable.part12};
-    //private int[] khongcoyeuduockhong = new int[]{R.raw.part11, R.raw.part12};
+    private int[] data_image = new int[]{R.drawable.question1, R.drawable.question2, R.drawable.question3, R.drawable.question4, R.drawable.question5, R.drawable.question6,
+            R.drawable.question7, R.drawable.question8, R.drawable.question9, R.drawable.question10};
 
     public void mapped() {
         recyclerView = (RecyclerView) findViewById(R.id.scroll);
@@ -48,13 +48,17 @@ public class ListeningActivity extends AppCompatActivity implements View.OnClick
         submit = (Button) toolbar.findViewById(R.id.submit);
         submit.setOnClickListener(this);
         data = new DataQuestion(this);
-        arr = new ArrayList<>();
         try {
             list = data.getDataListening();
+            for (int i=0;i<10;i++){
+                Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), data_image[i]);
+                list.get(i).setBitmap(largeIcon);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         adapter = new ListenningItemAdapter(list, this);
+        adapter.setCheck(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -106,10 +110,10 @@ public class ListeningActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         int numberCorrect = 0;
         int point = 5;
-        Intent intent = new Intent(this, FinishActivity.class);
-        try {
-            ArrayList<Question> data = new MockDataAnswer(this).getDataListening();
 
+        try {
+            MockDataAnswer moi = new MockDataAnswer(ListeningActivity.this);
+            ArrayList<Question> data = moi.getDataListening();
             for (int i = 0; i < list.size(); i++) {
                 if (null == list.get(i).getAnswer()) ;
                 else if (data.get(i).getCorrect().equals(list.get(i).getAnswer())) {
@@ -118,15 +122,22 @@ public class ListeningActivity extends AppCompatActivity implements View.OnClick
             }
             if (numberCorrect < 7) ;
             else if (numberCorrect <= 92) {
-                Log.d("cccl", "ccccl" + numberCorrect);
                 point += 5 * (numberCorrect - 6);
             } else point = 495;
+            Intent intent = new Intent(this, FinishActivity.class);
             intent.putExtra("Point", point);
             startActivity(intent);
+            mPlayer.stop();
+            startActivity(intent);
+            finish();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mPlayer.stop();
-        startActivity(intent);
+
+    }
+
+    @Override
+    public void check(int number) {
+        count.setText(String.valueOf(number) + "/100");
     }
 }

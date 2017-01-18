@@ -34,7 +34,7 @@ public class NumberQuestionAdapter extends RecyclerView.Adapter<NumberQuestionAd
         holder.number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myOnClickListener.onClick(position + 1);
+                myOnClickListener.onClick(position);
             }
         });
     }

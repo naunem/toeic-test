@@ -105,6 +105,7 @@ public class ReadingActivity extends AppCompatActivity implements View.OnClickLi
             } else point = 495;
             intent.putExtra("Point", point);
             startActivity(intent);
+            finish();
         } catch (IOException e) {
             e.printStackTrace();
         }

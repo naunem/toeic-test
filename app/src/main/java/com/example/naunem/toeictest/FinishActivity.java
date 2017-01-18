@@ -33,5 +33,6 @@ public class FinishActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         Intent intent = new Intent(this, ChoiceActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -34,9 +34,9 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
     RadioButton rD;
     ArrayList<Question> mang;
     DataQuestion data;
-    ArrayList<QuestionListening> arrayList;
+    ArrayList<QuestionItem> arrayList;
     TextView countQuestion;
-
+    int chido=0;
     public void setAns(Answer ans) {
         this.ans = ans;
     }
@@ -60,6 +60,8 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
 
         try {
             arrayList = data.getDataReading();
+           /* ArrayList<QuestionItem> list = data.getDataListening();
+            System.out.println("ccc"+list.size());*/
             question.setText(arrayList.get(number).getQuestion());
             rA.setText(arrayList.get(number).getA());
             rB.setText(arrayList.get(number).getB());
@@ -78,6 +80,12 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
         mang = getArguments().getParcelableArrayList("mang");
         number = getArguments().getInt("number");
         mapped(view);
+        for(int i=0;i<mang.size();i++){
+            if(null!=mang.get(i).getCorrect()) {
+                chido++;
+            }
+        }
+        countQuestion.setText(String.valueOf(chido) + "/100");
         if (mang.get(number).getCorrect() != null) {
             upDateChoice();
         }
@@ -93,6 +101,10 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
                 }
                 // If the radiobutton that has changed in check state is now checked...
                 if (isChecked) {
+                    if(null==mang.get(number).getCorrect()) {
+                        chido++;
+                        countQuestion.setText(String.valueOf(chido) + "/100");
+                    }
 
                     switch (i) {
                         case R.id.a:
@@ -130,7 +142,7 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.next:
                 number++;
-                countQuestion.setText(String.valueOf(number + 1) + "/100");
+
                 question.setText(arrayList.get(number).getQuestion());
                 rA.setText(arrayList.get(number).getA());
                 rB.setText(arrayList.get(number).getB());
@@ -145,7 +157,7 @@ public class ReadingFragment extends Fragment implements View.OnClickListener {
                 if (number == 0) break;
                 else {
                     --number;
-                    countQuestion.setText(String.valueOf(number + 1) + "/100");
+
                     question.setText(arrayList.get(number).getQuestion());
                     rA.setText(arrayList.get(number).getA());
                     rB.setText(arrayList.get(number).getB());

@@ -34,7 +34,7 @@
             android:text="Listening"
             android:textSize="30sp"
             android:gravity="center"
-            android:background="@color/cardview_light_background"/>
+            android:background="#88e6d8"/>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:text="Reading"
             android:textSize="30sp"
             android:gravity="center"
-            android:background="@color/cardview_light_background"/>
+            android:background="#88e6d8"/>
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
